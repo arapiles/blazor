@@ -14,6 +14,8 @@
 </ul>
 <input @bind="newTodo"/> <!-- Vincula valor que escriba user con el newTodo del codigo -->
 <button @onclick="AddTodo">Añadir tarea</button>
+<br><br>
+<p>@explicacion</p>
 
 @code {
     private List<TodoItem> todos = new(); //lista que solo puede contener objetos de la clase TodoItem que se inicia vacía
@@ -25,4 +27,6 @@
             newTodo = string.Empty;
         }
     }
+
+    string explicacion = "Aquí puedes agregar elementos a tu lista.";
 }
