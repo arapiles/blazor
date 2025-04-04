@@ -1,0 +1,28 @@
+@page "/todo"
+@rendermode InteractiveServer
+
+<h3>Tareas Pendientes: @todos.Count(todo => !todo.IsDone)</h3>
+
+<ul>
+    @foreach (var todo in todos){
+
+        <li>
+           <input type="checkbox" @bind="todo.IsDone" />
+           <input @bind="todo.Title" />
+        </li>
+    }
+</ul>
+<input @bind="newTodo"/> <!-- Vincula valor que escriba user con el newTodo del codigo -->
+<button @onclick="AddTodo">Añadir tarea</button>
+
+@code {
+    private List<TodoItem> todos = new(); //lista que solo puede contener objetos de la clase TodoItem que se inicia vacía
+    string newTodo="";
+
+    void AddTodo(){
+        if (!string.IsNullOrWhiteSpace(newTodo)){
+            todos.Add(new TodoItem { Title = newTodo}); // nueva instancia de la clase TodoItem, asigna el valor actual de newTodo a la propiedad Title del nuevo objeto, añade este nuevo objeto a la lista todos
+            newTodo = string.Empty;
+        }
+    }
+}
